@@ -34,7 +34,17 @@
     "MinimumRequiredOperatingSystem": "1809",
     "Architecture": "x64"
   },
-  "CustomRequirementRule": [],
+  "CustomRequirementRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Mozilla Firefox",
+      "FileOrFolder": "firefox.exe",
+      "Operator": "lessThan",
+      "VersionValue": "108.0.2",
+      "Check32BitOn64System": "false"
+    }
+  ],
   "DetectionRule": [
     {
       "Type": "File",
@@ -50,15 +60,8 @@
   "Supersedence": [],
   "Assignments": [
     {
-      "Type": "AllUsers",
-      "Intent": "available",
-      "Notification": "showAll",
-      "Verbose": true
-    },
-    {
-      "Type": "Group",
-      "GroupID": "08c243bf-e446-46fa-b47c-b2149bf0ca3c",
-      "Intent": "available",
+      "Type": "AllDevices",
+      "Intent": "required",
       "Notification": "showAll",
       "Verbose": true
     }
