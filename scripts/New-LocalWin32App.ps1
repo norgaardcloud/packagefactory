@@ -126,7 +126,7 @@ foreach ($ApplicationName in $Applications) {
             Application       = $ApplicationName
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
-            DisplayNameSuffix  = "(Package Factory)"
+            DisplayNameSuffix  = "(Package Factory - $Type)"
             Verbose           = $true
         }
         Write-Information -MessageData "Invoke: $Path\Create-Win32App.ps1"

@@ -139,7 +139,7 @@ foreach ($App in $Applications) {
             Application       = $ApplicationName
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
-            DisplayNameSuffix = "(Package Factory)"
+            DisplayNameSuffix = "(Package Factory - $Type)"
         }
         $params
         Write-Information -MessageData "Run: Create-Win32App.ps1"
