@@ -34,7 +34,7 @@ jobs:
           repository: ${{ github.event.inputs.alternatepath }}
           path: alternatepackages
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          ref: main
+          #ref: main
 
       - name: Copy alternate packages
         if: github.event.inputs.alternatepath != null
