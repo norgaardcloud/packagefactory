@@ -14,6 +14,10 @@ on:
         required: true
         type: string
         default: AdobeAcrobatReaderDCMUI
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
 
 jobs:
   create-package:
@@ -21,6 +25,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Test
+        if: ${{ !null( github.event.inputs.alternatepath ) }}
+        run: echo "🎉 Alternate location of packages in github"
 
       - name: Test for package/s
         id: test-package
