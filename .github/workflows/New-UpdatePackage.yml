@@ -33,7 +33,7 @@ jobs:
         with:
           repository: ${{ github.event.inputs.alternatepath }}
           path: alternatepackages
-          token: ${{ secrets.GITHUB_TOKEN }} # `GITHUB_TOKEN` is a secret that contains your PAT
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
           ref: main
 
       - name: Copy alternate packages
