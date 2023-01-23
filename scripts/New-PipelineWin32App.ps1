@@ -162,4 +162,7 @@ foreach ($App in $Applications) {
         Write-Information -MessageData "Run: Create-Win32App.ps1"
         & $([System.IO.Path]::Combine($Path, "Create-Win32App.ps1")) @params
     }
+    else{
+        Write-Output "Software package is already updated in Intune"
+    }
 }
