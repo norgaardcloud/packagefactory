@@ -53,7 +53,7 @@ Write-Information -MessageData "Applications: $Application"
 [System.Array] $Applications = $Application.ToString() -split ","
 
 # Retrieve intune metadata for all current uploaded packages - eg to ensure that a package with same guid and version number is not upoaded twice
-$allWin32Apps = Get-IntuneWin32App 
+$global:allWin32Apps = Get-IntuneWin32App 
 
 foreach ($App in $Applications) {
     $ApplicationName = $App.Trim()
