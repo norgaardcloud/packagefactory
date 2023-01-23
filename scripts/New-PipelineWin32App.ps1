@@ -71,7 +71,7 @@ foreach ($App in $Applications) {
     try {
         # Get existing Win32 app if present
         $DetectCurrentWin32App = $null
-        $DetectCurrentWin32App = $allWin32Apps | Where-Object{($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid}
+        $DetectCurrentWin32App = $allWin32Apps | Where-Object{$_.notes -like '{"*' } |  Where-Object{($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid}
 
         # Retrieve App metadata from Evergreen
         $AppData = Invoke-Expression -Command $Manifest.Application.Filter
