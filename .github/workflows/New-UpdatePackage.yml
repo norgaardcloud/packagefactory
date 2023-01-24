@@ -14,6 +14,10 @@ on:
         required: true
         type: string
         default: AdobeAcrobatReaderDCMUI
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
 
 jobs:
   create-package:
@@ -21,6 +25,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Alternate path
+        if: github.event.inputs.alternatepath != null
+        #run: echo "Using package json files from other location"
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.inputs.alternatepath }}
+          path: alternatepackages
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+          #ref: main
+
+      - name: Copy alternate packages
+        if: github.event.inputs.alternatepath != null
+        #id: test-package
+        shell: powershell
+        working-directory: ${{ github.workspace }}
+        run: |
+          Rename-Item -Path "${{ github.workspace }}\packages\" -NewName "packages.bak"
+          Copy-Item -Path "${{ github.workspace }}\alternatepackages\packages\" -Destination "${{ github.workspace }}\" -Recurse 
+          Test-Path "${{ github.workspace }}\packages\"
 
       - name: Test for package/s
         id: test-package
