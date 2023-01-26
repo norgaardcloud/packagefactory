@@ -18,6 +18,8 @@ on:
         description: Alternate location of packages in github.
         required: false
         type: string
+#  schedule:
+#     - cron: '30 2 * * *'
 
 jobs:
   create-package:
@@ -26,6 +28,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+#      - name: setenv
+#        if: github.event.schedule=='*/6 * * * *'         # set-env value
+#        run: |
+#          echo "::set-env name=package::MicrosoftWvdRemoteDesktop"
+#          echo "::set-env name=alternatepath::norgaardcloud/packagefactory-data"
+          
       - name: Alternate path
         if: github.event.inputs.alternatepath != null
         #run: echo "Using package json files from other location"
