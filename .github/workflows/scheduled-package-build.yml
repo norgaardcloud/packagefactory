@@ -15,13 +15,13 @@ jobs:
   Update_packages:
     uses: ./.github/workflows/New-UpdatePackage.yml
     with:
-      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings"
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
   App_packages:
     uses: ./.github/workflows/New-AppPackage.yml
     with:
-      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings"
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
