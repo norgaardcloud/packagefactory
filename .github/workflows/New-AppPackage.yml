@@ -18,6 +18,16 @@ on:
         description: Alternate location of packages in github.
         required: false
         type: string
+  workflow_call:
+    inputs:
+      package:
+        description: Application name.
+        required: true
+        type: string
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
 
 jobs:
   create-package:
@@ -27,17 +37,17 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Alternate path
-        if: github.event.inputs.alternatepath != null
+        if: inputs.alternatepath != null
         #run: echo "Using package json files from other location"
         uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.inputs.alternatepath }}
+          repository: ${{ inputs.alternatepath }}
           path: alternatepackages
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
           #ref: main
 
       - name: Copy alternate packages
-        if: github.event.inputs.alternatepath != null
+        if: inputs.alternatepath != null
         #id: test-package
         shell: powershell
         working-directory: ${{ github.workspace }}
@@ -51,7 +61,7 @@ jobs:
         shell: powershell
         working-directory: ${{ github.workspace }}
         run: |
-          [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
+          [System.Array] $Applications = ("${{ inputs.package }}").ToString() -split ","
           foreach ($App in $Applications) {
               $AppItem = $App.Trim()
               Test-Path -Path "${{ github.workspace }}\packages\Apps\$AppItem"
@@ -86,7 +96,7 @@ jobs:
         run: |
           Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
           $params = @{
-              Application  = "${{ github.event.inputs.package }}"
+              Application  = "${{ inputs.package }}"
               Path         = "${{ github.workspace }}"
               Type         = "Apps"
           }
