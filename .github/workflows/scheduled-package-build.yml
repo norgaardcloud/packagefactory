@@ -36,6 +36,6 @@ jobs:
   App_packages_2:
     uses: ./.github/workflows/New-AppPackage.yml
     with:
-      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,LenovoVantageService"
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop" #,7zip,LenovoVantageService
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
