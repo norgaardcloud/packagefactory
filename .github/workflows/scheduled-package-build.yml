@@ -1,19 +1,26 @@
 # This is a basic workflow to help you get started with Actions
 
-name: multiple_update
+name: Scheduled package build
 
 # Controls when the workflow will run
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
-#  schedule:
-#     - cron: '30 2 * * *'
+  schedule:
+     - cron: '30 2 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  call-workflow-passing-data:
+  Update packages:
     uses: ./.github/workflows/New-UpdatePackage.yml
+    with:
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty"
+      alternatepath: norgaardcloud/packagefactory-data
+    secrets: inherit
+
+  Availible packages:
+    uses: ./.github/workflows/New-AppPackage.yml
     with:
       package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty"
       alternatepath: norgaardcloud/packagefactory-data
