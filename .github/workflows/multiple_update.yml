@@ -15,6 +15,6 @@ jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/New-UpdatePackage.yml
     with:
-      package: MozillaFirefox
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
