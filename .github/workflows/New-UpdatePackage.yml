@@ -18,6 +18,16 @@ on:
         description: Alternate location of packages in github.
         required: false
         type: string
+  workflow_call:
+    inputs:
+      package:
+        description: Update name.
+        required: true
+        type: string
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
 #  schedule:
 #     - cron: '30 2 * * *'
 
