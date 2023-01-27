@@ -29,13 +29,13 @@ jobs:
   Update_packages_2:
     uses: ./.github/workflows/New-UpdatePackage.yml
     with:
-      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,,MicrosoftVcRedist2013x64,MicrosoftVcRedist2013x86,MicrosoftVcRedist2022x64,MicrosoftVcRedist2022x86,Wireshark,SignalDesktop,7zip"
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,7zip"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
   App_packages_2:
     uses: ./.github/workflows/New-AppPackage.yml
     with:
-      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,MicrosoftVcRedist2013x64,MicrosoftVcRedist2013x86,MicrosoftVcRedist2022x64,MicrosoftVcRedist2022x86,Wireshark,SignalDesktop,7zip,LenovoVantageService"
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,7zip,LenovoVantageService"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
