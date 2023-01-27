@@ -112,7 +112,13 @@ foreach ($App in $Applications) {
         else {
 
             # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+            if($ApplicationName -eq "7zip"){
+                $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder) -UserAgent 'Googlebot/2.1 (+http://www.google.com/bot.html)')
+            }
+            else{
+                $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+            }
+            
 
             # Unpack the installer file if its a zip file
             Write-Information -MessageData "Downloaded: $($result.FullName)"
