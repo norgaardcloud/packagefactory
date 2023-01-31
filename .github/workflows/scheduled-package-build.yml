@@ -12,12 +12,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  Update_packages:
-    uses: ./.github/workflows/New-UpdatePackage.yml
-    with:
-      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
-      alternatepath: norgaardcloud/packagefactory-data
-    secrets: inherit
+  #Update_packages:
+  #  uses: ./.github/workflows/New-UpdatePackage.yml
+  #  with:
+  #    package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
+  #    alternatepath: norgaardcloud/packagefactory-data
+  #  secrets: inherit
 
   App_packages:
     uses: ./.github/workflows/New-AppPackage.yml
@@ -39,3 +39,14 @@ jobs:
       package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win" #,7zip,LenovoVantageService
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
+
+  update_packages:
+    strategy:
+      matrix:
+        package_name: [MozillaFirefox, BitwardenDesktop, diagrams.net, GitForWindows, GoogleChrome, MicrosoftPowerShell, MicrosoftVisualStudioCode, putty, MicrosoftWvdRemoteDesktop, ScooterBeyondCompare, ZoomMeetings, AWSCLI, AWSSAMCLI]
+    steps:
+      - uses: ./.github/workflows/New-UpdatePackage.yml
+        with:
+          package: ${{ matrix.package_name }}
+          alternatepath: norgaardcloud/packagefactory-data
+        secrets: inherit
