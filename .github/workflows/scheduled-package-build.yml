@@ -41,6 +41,7 @@ jobs:
     secrets: inherit
 
   update_packages:
+    runs-on: windows-latest
     strategy:
       matrix:
         package_name: [MozillaFirefox, BitwardenDesktop, diagrams.net, GitForWindows, GoogleChrome, MicrosoftPowerShell, MicrosoftVisualStudioCode, putty, MicrosoftWvdRemoteDesktop, ScooterBeyondCompare, ZoomMeetings, AWSCLI, AWSSAMCLI]
