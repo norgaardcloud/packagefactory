@@ -49,4 +49,4 @@ jobs:
         with:
           package: ${{ matrix.package_name }}
           alternatepath: norgaardcloud/packagefactory-data
-        secrets: inherit
+   #     secrets: inherit
