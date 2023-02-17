@@ -1,0 +1,92 @@
+# Removes Old Packages where package guid is the same
+# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
+# to import the package into a target tenant
+name: Remove Old Packages
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+
+  workflow_call:
+
+
+jobs:
+  remove-oldpackages:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v5.2
+        with:
+          modules-to-cache: "MSAL.PS::, IntuneWin32App::, Evergreen::, VcRedist::"
+          updatable: true
+          shell: powershell
+
+      - name: List Modules
+        id: list-modules
+        shell: powershell
+        run: |
+          foreach ($module in @("MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist")) {
+              $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
+              Write-Host "$module version: $Version"
+          }
+
+      # remove-oldpackages
+      - name: Authn to the Graph API and remove package/s
+        id: remove-packages
+        shell: powershell
+        working-directory: ${{ github.workspace }}
+        env:
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        run: |
+          Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
+
+          #Function that removes older versions of Win32Apps package
+          function remove-Win32Appspackage
+          {
+            param(
+              $guid,
+              $packages
+            )
+            $kill = $null
+            $kill = $packages | Where-Object{ ($_.notes | ConvertFrom-Json).Guid -eq $guid} | sort-object {[version]$_.DisplayVersion} -Descending
+            if($kill.count -gt 1)
+            {
+              $kill[1..1000] | foreach-object{
+                write-output "Removing $_.displayname with version: $_.displayversion"
+                Remove-IntuneWin32App -ID $_.id #-whatIf -verbose #-Confirm
+              }
+            }
+            else{
+                write-output "Only one $_.displayname with version: $_.displayversion exists"
+            }
+          }
+
+          #Authenticate
+          try {
+              # Authenticate to the Graph API
+              # Expects secrets to be passed into environment variables
+              Write-Information -MessageData "Authenticate to the Graph API"
+              $params = @{
+                  TenantId     = "$env:TENANT_ID"
+                  ClientId     = "$env:CLIENT_ID"
+                  ClientSecret = "$env:CLIENT_SECRET"
+              }
+              $script:AuthToken = Connect-MSIntuneGraph @params
+          }
+          catch {
+              throw $_
+          }
+
+        #Get Win32Apps and unique guids
+        $Win32Apps = Get-IntuneWin32App
+        $guids = ($Win32Apps.notes | ConvertFrom-Json).Guid | select -Unique
+
+        #For each unique Win32Appspackage GUID check and remove older packages
+        $guids | ForEach-Object{remove-Win32Appspackage $_ $Win32Apps}
