@@ -59,12 +59,12 @@ jobs:
             if($kill.count -gt 1)
             {
               $kill[1..1000] | foreach-object{
-                write-output "Removing $_.displayname with version: $_.displayversion"
+                write-output "Removing $($_).displayname with version: $($_).displayversion"
                 Remove-IntuneWin32App -ID $_.id #-whatIf -verbose #-Confirm
               }
             }
             else{
-                write-output "Only one $_.displayname with version: $_.displayversion exists"
+                write-output "Only one $($_).displayname with version: $($_).displayversion exists"
             }
           }
 
