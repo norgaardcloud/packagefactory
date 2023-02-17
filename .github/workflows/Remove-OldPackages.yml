@@ -84,9 +84,9 @@ jobs:
               throw $_
           }
 
-        #Get Win32Apps and unique guids
-        $Win32Apps = Get-IntuneWin32App
-        $guids = ($Win32Apps.notes | ConvertFrom-Json).Guid | select -Unique
+          #Get Win32Apps and unique guids
+          $Win32Apps = Get-IntuneWin32App
+          $guids = ($Win32Apps.notes | ConvertFrom-Json).Guid | select -Unique
 
-        #For each unique Win32Appspackage GUID check and remove older packages
-        $guids | ForEach-Object{remove-Win32Appspackage $_ $Win32Apps}
+          #For each unique Win32Appspackage GUID check and remove older packages
+          $guids | ForEach-Object{remove-Win32Appspackage $_ $Win32Apps}
