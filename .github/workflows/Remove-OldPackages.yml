@@ -64,7 +64,7 @@ jobs:
               }
             }
             else{
-                write-output Only one $_.displayname with version: $_.displayversion exists
+                write-output "Only one $kill.displayname with version: $kill.displayversion exists"
             }
           }
 
