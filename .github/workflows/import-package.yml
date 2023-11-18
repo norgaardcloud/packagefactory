@@ -32,10 +32,8 @@ on:
         type: string
       type:
           description: Package type
-          type: choice
-          options:
-            - App
-            - Update
+          required: true
+          type: string
       alternatepath:
         description: Alternate location of packages in github.
         required: false
