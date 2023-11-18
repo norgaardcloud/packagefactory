@@ -20,6 +20,27 @@ on:
           options:
             - App
             - Update
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      package:
+        description: Update name.
+        required: true
+        type: string
+      type:
+          description: Package type
+          type: choice
+          options:
+            - App
+            - Update
+      alternatepath:
+        description: Alternate location of packages in github.
+        required: false
+        type: string
+
 
 jobs:
   create-package:
