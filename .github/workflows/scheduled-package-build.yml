@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/import-package.yml
     with:
       package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
-      type: Update
+      type: "Update"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
