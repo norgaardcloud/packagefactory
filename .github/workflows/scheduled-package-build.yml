@@ -1,0 +1,41 @@
+# This run a nightly update of pakages
+
+name: Scheduled package build
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+  schedule:
+     - cron: '30 2 * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Update_packages:
+    uses: ./.github/workflows/New-UpdatePackage.yml
+    with:
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
+      alternatepath: norgaardcloud/packagefactory-data
+    secrets: inherit
+
+  App_packages:
+    uses: ./.github/workflows/New-AppPackage.yml
+    with:
+      package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
+      alternatepath: norgaardcloud/packagefactory-data
+    secrets: inherit
+
+  Update_packages_2:
+    uses: ./.github/workflows/New-UpdatePackage.yml
+    with:
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win"
+      alternatepath: norgaardcloud/packagefactory-data
+    secrets: inherit
+
+  App_packages_2:
+    uses: ./.github/workflows/New-AppPackage.yml
+    with:
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win" #,7zip,LenovoVantageService
+      alternatepath: norgaardcloud/packagefactory-data
+    secrets: inherit
