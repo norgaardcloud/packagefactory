@@ -15,11 +15,11 @@ on:
         type: string
         default: AdobeAcrobatReaderDCMUI
       type:
-          description: Package type
-          type: choice
-          options:
-            - App
-            - Update
+        description: Package type
+        type: choice
+        options:
+         - App
+         - Update
       alternatepath:
         description: Alternate location of packages in github.
         required: false
@@ -31,9 +31,9 @@ on:
         required: true
         type: string
       type:
-          description: Package type
-          required: true
-          type: string
+        description: Package type
+        required: true
+        type: string
       alternatepath:
         description: Alternate location of packages in github.
         required: false
