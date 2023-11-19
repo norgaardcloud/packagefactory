@@ -79,8 +79,8 @@ jobs:
                 continue
               }
               else {
-                throw "Cannot find: '${{ github.workspace }}\packages\packages\${{ inputs.type }}\$AppItem'."
                 Get-ChildItem -Path "${{ github.workspace }}\packages\" -Recurse -Force
+                throw "Cannot find: '${{ github.workspace }}\packages\packages\${{ inputs.type }}\$AppItem'."
               }
           }
 
