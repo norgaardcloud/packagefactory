@@ -124,6 +124,8 @@ begin {
         $ModuleFile = $(Join-Path -Path $PSScriptRoot -ChildPath "New-Win32Package.psm1")
         Test-Path -Path $ModuleFile -PathType "Leaf" -ErrorAction "Stop" | Out-Null
         Import-Module -Name $ModuleFile -Force -ErrorAction "Stop"
+        
+        $IntuneWinAppUtilFile = $(Join-Path -Path $PSScriptRoot -ChildPath "IntuneWinAppUtil.exe")
     }
     catch {
         throw $_
@@ -352,7 +354,7 @@ process {
                     SourceFolder = $SourcePath
                     SetupFile    = $Manifest.PackageInformation.SetupFile
                     OutputFolder = $OutputPath
-                    IntuneWinAppUtilPath = $Path\IntuneWinAppUtil.exe
+                    IntuneWinAppUtilPath = $IntuneWinAppUtilFile
                     Force        = $true
                 }
                 $IntuneWinPackage = New-IntuneWin32AppPackage @params
