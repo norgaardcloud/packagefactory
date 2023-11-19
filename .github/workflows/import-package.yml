@@ -75,11 +75,12 @@ jobs:
           [System.Array] $Applications = ("${{ inputs.package }}").ToString() -split ","
           foreach ($App in $Applications) {
               $AppItem = $App.Trim()
-              if (Test-Path -Path "${{ github.workspace }}\packages\${{ inputs.type }}\$AppItem" -PathType "Container"){
+              if (Test-Path -Path "${{ github.workspace }}\packages\packages\${{ inputs.type }}\$AppItem" -PathType "Container"){
                 continue
               }
               else {
-                throw "Cannot find: '${{ github.workspace }}\packages\${{ inputs.type }}\$AppItem'."
+                throw "Cannot find: '${{ github.workspace }}\packages\packages\${{ inputs.type }}\$AppItem'."
+                Get-ChildItem -Path "${{ github.workspace }}\packages\" -Recurse -Force
               }
           }
 
