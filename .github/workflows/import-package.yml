@@ -72,14 +72,14 @@ jobs:
         shell: powershell
         working-directory: ${{ github.workspace }}
         run: |
-          [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
+          [System.Array] $Applications = ("${{ inputs.package }}").ToString() -split ","
           foreach ($App in $Applications) {
               $AppItem = $App.Trim()
-              if (Test-Path -Path "${{ github.workspace }}\packages\${{ github.event.inputs.type }}\$AppItem" -PathType "Container"){
+              if (Test-Path -Path "${{ github.workspace }}\packages\${{ inputs.type }}\$AppItem" -PathType "Container"){
                 continue
               }
               else {
-                throw "Cannot find: '${{ github.workspace }}\packages\${{ github.event.inputs.type }}\$AppItem'."
+                throw "Cannot find: '${{ github.workspace }}\packages\${{ inputs.type }}\$AppItem'."
               }
           }
 
@@ -118,7 +118,7 @@ jobs:
           }
 
           # Convert $Application into an array because we can't pass an array via inputs into the workflow
-          [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split "," | ForEach-Object { $_.Trim() }
+          [System.Array] $Applications = ("${{ inputs.package }}").ToString() -split "," | ForEach-Object { $_.Trim() }
 
           # Import packages into the tenant
           $params = @{
