@@ -124,7 +124,7 @@ jobs:
           $params = @{
               Path        = "${{ github.workspace }}\packages"
               Application = $Applications
-              Type        = "${{ github.event.inputs.type }}"
+              Type        = "${{ inputs.type }}"
               WorkingPath = "${{ github.workspace }}\output"
               Import      = $true
           }
