@@ -352,6 +352,7 @@ process {
                     SourceFolder = $SourcePath
                     SetupFile    = $Manifest.PackageInformation.SetupFile
                     OutputFolder = $OutputPath
+                    IntuneWinAppUtilPath = $Path\IntuneWinAppUtil.exe
                     Force        = $true
                 }
                 $IntuneWinPackage = New-IntuneWin32AppPackage @params
