@@ -13,29 +13,33 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Update_packages:
-    uses: ./.github/workflows/New-UpdatePackage.yml
+    uses: ./.github/workflows/import-package.yml
     with:
       package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
+      type: Update
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
   App_packages:
-    uses: ./.github/workflows/New-AppPackage.yml
+    uses: ./.github/workflows/import-package.yml
     with:
       package: "MozillaFirefox,BitwardenDesktop,diagrams.net,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,ZoomMeetings,AWSCLI,AWSSAMCLI"
+      type: App
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
   Update_packages_2:
-    uses: ./.github/workflows/New-UpdatePackage.yml
+    uses: ./.github/workflows/import-package.yml
     with:
       package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win"
+      type: Update
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
 
   App_packages_2:
-    uses: ./.github/workflows/New-AppPackage.yml
+    uses: ./.github/workflows/import-package.yml
     with:
       package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win" #,7zip,LenovoVantageService
+      type: App
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
