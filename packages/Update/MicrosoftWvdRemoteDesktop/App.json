@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftWvdRemoteDesktop",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Update for Microsoft Remote Desktop",
     "Language": "en-US",
     "Architecture": "x64"
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"{435AF226-840F-49ED-8F03-4B1356F7740F}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "basedOnReturnCode"
+    "DeviceRestartBehavior": "basedOnReturnCode",
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

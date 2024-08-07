@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftFSLogixApps",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
     "Title": "Microsoft FSLogix Apps",
     "Language": "en-US",
     "Architecture": "x64"
@@ -38,7 +38,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

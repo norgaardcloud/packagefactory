@@ -240,7 +240,7 @@ process {
 
                     # Download the application installer or run command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                    if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
+                    if ($Manifest.Application.Filter -match "Get-EvergreenAppFromApi|Get-EvergreenApp") {
                         # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
                         $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath
@@ -349,15 +349,21 @@ process {
                 }
 
                 #region Create the intunewin package
-                Write-Msg -Msg "Create intunewin package in: '$Path\output'"
-                $params = @{
-                    SourceFolder = $SourcePath
-                    SetupFile    = $Manifest.PackageInformation.SetupFile
-                    OutputFolder = $OutputPath
-                    IntuneWinAppUtilPath = $IntuneWinAppUtilFile
-                    Force        = $true
+                if ($Result.FullName -match "\.intunewin$") {
+                    Write-Msg -Msg "Copy downloaded intunewin file to: '$Path\output'"
+                    Copy-Item -Path $Result.FullName -Destination $OutputPath -Force
                 }
-                $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                else {
+                    Write-Msg -Msg "Create intunewin package in: '$Path\output'"
+                    $params = @{
+                        SourceFolder = $SourcePath
+                        SetupFile    = $Manifest.PackageInformation.SetupFile
+                        OutputFolder = $OutputPath
+                    IntuneWinAppUtilPath = $IntuneWinAppUtilFile
+                        Force        = $true
+                    }
+                    $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                }
 
                 # Get the package file
                 $PackageFile = Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue"
