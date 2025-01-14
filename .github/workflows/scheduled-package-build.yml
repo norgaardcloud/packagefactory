@@ -15,7 +15,7 @@ jobs:
   Update_packages:
     uses: ./.github/workflows/import-package.yml
     with:
-      package: "MozillaFirefox,BitwardenDesktop,JGraphDrawIO,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,AWSCLI,AWSSAMCLI,ZoomMeetings"
+      package: "MozillaFirefox,BitwardenDesktop,JGraphDrawIO,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,ScooterBeyondCompare,AWSCLI,AWSSAMCLI,ZoomMeetings" #,MicrosoftWvdRemoteDesktop
       type: "Update"
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
@@ -23,7 +23,7 @@ jobs:
   App_packages:
     uses: ./.github/workflows/import-package.yml
     with:
-      package: "MozillaFirefox,BitwardenDesktop,JGraphDrawIO,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,MicrosoftWvdRemoteDesktop,ScooterBeyondCompare,AWSCLI,AWSSAMCLI,ZoomMeetings"
+      package: "MozillaFirefox,BitwardenDesktop,JGraphDrawIO,GitForWindows,GoogleChrome,MicrosoftPowerShell,MicrosoftVisualStudioCode,putty,ScooterBeyondCompare,AWSCLI,AWSSAMCLI,ZoomMeetings" #,MicrosoftWvdRemoteDesktop
       type: App
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
