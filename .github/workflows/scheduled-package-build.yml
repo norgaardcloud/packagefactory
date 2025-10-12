@@ -31,7 +31,7 @@ jobs:
   Update_packages_2:
     uses: ./.github/workflows/import-package.yml
     with:
-      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win"
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop" #,Gpg4win
       type: Update
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
@@ -39,7 +39,8 @@ jobs:
   App_packages_2:
     uses: ./.github/workflows/import-package.yml
     with:
-      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop,Gpg4win" #,7zip,LenovoVantageService
+      package: "CitrixWorkspaceApp,Greenshot,PaintDotNetOfflineInstaller,Wireshark,SignalDesktop,GitHubDesktop" #,Gpg4win,7zip,LenovoVantageService
       type: App
       alternatepath: norgaardcloud/packagefactory-data
     secrets: inherit
+
