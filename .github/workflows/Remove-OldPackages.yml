@@ -20,7 +20,7 @@ jobs:
 
       - name: Install and cache PowerShell modules
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.2
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: "MSAL.PS::, IntuneWin32App::, Evergreen::, VcRedist::"
           updatable: true
@@ -89,4 +89,5 @@ jobs:
           $guids = ($Win32Apps.notes | ConvertFrom-Json).Guid | select -Unique
 
           #For each unique Win32Appspackage GUID check and remove older packages
+
           $guids | ForEach-Object{remove-Win32Appspackage $_ $Win32Apps}
