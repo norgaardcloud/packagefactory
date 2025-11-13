@@ -240,6 +240,7 @@ process {
 
                     # Download the application installer or run command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
+                    Update-Evergreen -Force
                     if ($Manifest.Application.Filter -match "Get-EvergreenAppFromApi|Get-EvergreenApp") {
                         # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
