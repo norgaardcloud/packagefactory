@@ -49,6 +49,7 @@ jobs:
               InstallManifest = "Install.json"
               Verbose         = $false
           }
+          Update-Evergreen -Force
           . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" @params
 
       # Format the date number for the commit message
