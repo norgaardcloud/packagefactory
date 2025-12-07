@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftVcRedist2022x64",
-    "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
+    "Filter": "Get-VcList -Release \"14\" -Architecture \"x64\"",
     "Title": "Microsoft Visual C++ Redistributable for Visual Studio 2022",
     "Language": "en-US",
     "Architecture": "x64"
